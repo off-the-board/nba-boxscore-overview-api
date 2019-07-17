@@ -1,0 +1,3 @@
+Flask==1.0.3
+Flask-RESTful==0.3.7
+nba-sdk==0.1.0
