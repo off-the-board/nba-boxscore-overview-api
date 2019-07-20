@@ -15,3 +15,21 @@ services:
       - FLASK_ENV=development
       - APP_SETTINGS=project.config.DevelopmentConfig
       - SECRET_KEY=my_precious
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/nba_boxscore_overview_dev
+
+  redis:
+    image: 'redis:3.0-alpine'
+    container_name: 'redis'
+    command: redis-server --requirepass p@ssw0rd!
+    ports:
+      - 6379:6379
+
+  db:
+    build:
+      context: ./services/daily/project/db
+      dockerfile: Dockerfile
+    ports:
+      - 5435:5435
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
